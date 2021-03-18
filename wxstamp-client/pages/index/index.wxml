@@ -1,0 +1,94 @@
+<view class="page" data-weui-theme="{{theme}}">    
+    <view class="page__bd">
+        <view class="weui-panel weui-panel_access">
+            <view class="weui-panel__hd">用章事件草稿</view>
+            <view class="weui-panel__bd" wx:for="{{sealUseRequestFormDraft}}" wx:key="requestID">
+                <navigator url="" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active"  id="{{item.requestID}}" bindtap="draftFormClick">
+                    <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                        <image class="weui-media-box__thumb" src="{{icon60}}" />
+                    </view>
+                    <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                        <view class="weui-media-box__title">{{sealArray[item.sealIndex]}}</view>
+                        <view class="weui-media-box__desc">用章日期：{{item.requestDate}}</view>
+                        <view class="weui-media-box__desc">用章事件编号：{{item.requestID}}</view>
+                        <view class="weui-media-box__desc">状态：{{item.status}}</view>
+                    </view>
+                </navigator> 
+                <mp-actionSheet show="{{showDraftActionsheet}}" actions="{{draftGroups}}" bindChange="draftChangeOPMenu" bindactiontap="draftChangeOPMenu" bindclose="draftChangeOPClose" title="请选择对用章事件的操作">
+                </mp-actionSheet>   
+            </view>
+
+        </view>
+
+        <view class="weui-panel weui-panel_access">
+            <view class="weui-panel__hd">已提交用章事件</view>
+            <block class="weui-panel__bd" wx:for="{{sealUseRequestFormSubmittedToBeVerified}}" wx:key="requestID">
+                <navigator url="" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active"  id="{{item.requestID}}" bindtap="submittedFormClick">
+                    <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                        <image class="weui-media-box__thumb" src="{{icon60}}" />
+                    </view>
+                    <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                        <view class="weui-media-box__title">{{sealArray[item.sealIndex]}}</view>
+                        <view class="weui-media-box__desc">用章日期：{{item.requestDate}}</view>
+                        <view class="weui-media-box__desc">用章事件编号：{{item.requestID}}</view>
+                        <view class="weui-media-box__desc">审核状态：{{item.status}}</view>
+                      </view>
+                </navigator> 
+                <mp-actionSheet show="{{showSubmittedActionsheet}}" actions="{{submittedGroups}}" bindChange="submittedChangeOPMenu" bindactiontap="submittedChangeOPMenu" bindclose="submittedChangeOPClose" title="请选择对用章事件的操作">
+            </mp-actionSheet> 
+        </block>
+
+            <block class="weui-panel__bd" wx:for="{{sealUseRequestFormSubmittedAllowed}}" wx:key="requestID">
+                <navigator url="" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active"  id="{{item.requestID}}" bindtap="allowedFormClick">
+                    <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                        <image class="weui-media-box__thumb" src="{{icon60}}" />
+                    </view>
+                    <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                        <view class="weui-media-box__title">{{sealArray[item.sealIndex]}}</view>
+                        <view class="weui-media-box__desc">用章日期：{{item.requestDate}}</view>
+                        <view class="weui-media-box__desc">用章事件编号：{{item.requestID}}</view>
+                        <view class="weui-media-box__desc">审核状态：{{item.status}}</view>
+                      </view>
+                </navigator> 
+                <mp-actionSheet show="{{showAllowedActionsheet}}" actions="{{allowedGroups}}" bindChange="allowedChangeOPMenu" bindclose="allowedChangeOPClose" bindactiontap="allowedChangeOPMenu" title="请选择对用章事件的操作">
+            </mp-actionSheet> 
+        </block>
+
+            <block class="weui-panel__bd" wx:for="{{sealUseRequestFormSubmittedNotAllowed}}" wx:key="requestID">
+                <navigator url="" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active"  id="{{item.requestID}}" bindtap="submittedFormClick">
+                    <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                        <image class="weui-media-box__thumb" src="{{icon60}}" />
+                    </view>
+                    <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                        <view class="weui-media-box__title">{{sealArray[item.sealIndex]}}</view>
+                        <view class="weui-media-box__desc">用章日期：{{item.requestDate}}</view>
+                        <view class="weui-media-box__desc">用章事件编号：{{item.requestID}}</view>
+                        <view class="weui-media-box__desc">审核状态：{{item.status}}</view>
+                      </view>
+                </navigator> 
+            <mp-actionSheet show="{{showSubmittedActionsheet}}" actions="{{submittedGroups}}" bindChange="submittedChangeOPMenu" bindclose="submittedChangeOPClose" bindactiontap="submittedChangeOPMenu" title="请选择对用章事件的操作">
+            </mp-actionSheet> 
+        </block>
+
+        <block class="weui-panel__bd" wx:for="{{sealUseRequestFormComplete}}" wx:key="requestID">
+                <navigator url="" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active"  id="{{item.requestID}}" bindtap="completeFormClick">
+                    <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                        <image class="weui-media-box__thumb" src="{{icon60}}" />
+                    </view>
+                    <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                        <view class="weui-media-box__title">{{sealArray[item.sealIndex]}}</view>
+                        <view class="weui-media-box__desc">用章日期：{{item.requestDate}}</view>
+                        <view class="weui-media-box__desc">用章事件编号：{{item.requestID}}</view>
+                        <view class="weui-media-box__desc">审核状态：{{item.status}}</view>
+                      </view>
+                </navigator> 
+            <mp-actionSheet show="{{showCompleteActionsheet}}" actions="{{completeGroups}}" bindChange="completeChangeOPMenu" bindclose="completeChangeOPClose" bindactiontap="completeChangeOPMenu" title="请选择对用章事件的操作">
+            </mp-actionSheet> 
+        </block>
+
+        </view>
+    </view>
+    <view class="btn-view">
+        <button type="default" class="btn" bindtap="createForm">添加用章事件</button>
+    </view>
+</view>

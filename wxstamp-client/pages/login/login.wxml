@@ -1,0 +1,19 @@
+<!--pages/me/me.wxml-->
+<view class="container">
+  <view class="avatar">
+    <image src="{{avatarUrl}}" />
+  </view>
+  <view class="weui-media-box__title" wx:if="{{logged==false}}">未登录</view>
+  <view class="weui-media-box__title">{{userInfo.nickName}}</view>
+  <view class="weui-media-box__desc">openid:{{openid}}</view>
+  <view class="weui-media-box__desc">管理员：{{isAdmin}}</view>
+<!--
+  <button bindtap="navigateSMCrypto" >测试SM算法</button>
+  <button bindtap="navigateCompleteForm" >测试线下用印Base64</button>
+  <button bindtap="navigateOpenCryptedForm" >测试解密</button>
+  -->
+  <view class="btn-view">
+  <button open-type="getUserInfo"  bindgetuserinfo="onGetOpenid" class="userinfo-nickname" >点击登录</button>
+  </view>
+
+</view>

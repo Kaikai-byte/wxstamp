@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "item": "/components/Item/Item",
+    "mp-actionSheet": "weui-miniprogram/actionsheet/actionsheet"
+  },
+  "navigationBarTitleText": "Home",
+  "enablePullDownRefresh": true
+
+}

@@ -1,0 +1,56 @@
+<view class="page" data-weui-theme="{{theme}}" wx:if="{{canIUse}}">    
+    <view class="page__bd">
+        <view class="weui-panel weui-panel_access">
+            <view class="weui-panel__hd">待审批用章事件</view>
+            <view class="weui-panel__bd" wx:for="{{sealUseRequestFormSubmittedToBeVerified}}" wx:key="requestID">
+                <navigator url="" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active"  id="{{item.requestID}}" bindtap="toBeVerifiedFormClick">
+                    <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                        <image class="weui-media-box__thumb" src="{{icon60}}" />
+                    </view>
+                    <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                        <view class="weui-media-box__title">{{sealArray[item.sealIndex]}}</view>
+                        <view class="weui-media-box__desc">用章日期：{{item.requestDate}}</view>
+                        <view class="weui-media-box__desc">用章事件编号：{{item.requestID}}</view>
+                        <view class="weui-media-box__desc">审核状态：{{item.status}}</view>
+                    </view>
+                </navigator> 
+            </view>
+            <mp-actionSheet show="{{showToBeVerifiedActionsheet}}" actions="{{toBeVerifiedGroups}}" bindChange="toBeVerifiedChangeOPMenu" bindactiontap="toBeVerifiedChangeOPMenu" bindclose="toBeVerifiedChangeOPClose" title="请选择对用章事件的操作">
+                </mp-actionSheet>   
+        </view>
+
+        <view class="weui-panel weui-panel_access">
+            <view class="weui-panel__hd">已审批用章事件</view>
+            <block class="weui-panel__bd" wx:for="{{sealUseRequestFormSubmittedAllowed}}" wx:key="requestID">
+                <navigator url="" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active"  id="{{item.requestID}}" bindtap="verifiedFormClick">
+                    <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                        <image class="weui-media-box__thumb" src="{{icon60}}" />
+                    </view>
+                    <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                        <view class="weui-media-box__title">{{sealArray[item.sealIndex]}}</view>
+                        <view class="weui-media-box__desc">用章日期：{{item.requestDate}}</view>
+                        <view class="weui-media-box__desc">用章事件编号：{{item.requestID}}</view>
+                        <view class="weui-media-box__desc">审核状态：{{item.status}}</view>
+                      </view>
+                </navigator> 
+            <mp-actionSheet show="{{showVerifiedActionsheet}}" actions="{{verifiedGroups}}" bindChange="verifiedChangeOPMenu" bindactiontap="verifiedChangeOPMenu" bindclose="verifiedChangeOPClose" title="请选择对用章事件的操作">
+            </mp-actionSheet> 
+        </block>
+        <block class="weui-panel__bd" wx:for="{{sealUseRequestFormSubmittedNotAllowed}}" wx:key="requestID">
+                <navigator url="" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active"  id="{{item.requestID}}" bindtap="verifiedFormClick">
+                    <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                        <image class="weui-media-box__thumb" src="{{icon60}}" />
+                    </view>
+                    <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                        <view class="weui-media-box__title">{{sealArray[item.sealIndex]}}</view>
+                        <view class="weui-media-box__desc">用章日期：{{item.requestDate}}</view>
+                        <view class="weui-media-box__desc">用章事件编号：{{item.requestID}}</view>
+                        <view class="weui-media-box__desc">审核状态：{{item.status}}</view>
+                      </view>
+                </navigator> 
+            <mp-actionSheet show="{{showVerifiedActionsheet}}" actions="{{verifiedGroups}}" bindChange="verifiedChangeOPMenu" bindactiontap="verifiedChangeOPMenu" bindclose="verifiedChangeOPClose" title="请选择对用章事件的操作">
+            </mp-actionSheet> 
+        </block>
+        </view>
+    </view>
+</view>

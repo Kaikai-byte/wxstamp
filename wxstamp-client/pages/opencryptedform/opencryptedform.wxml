@@ -1,0 +1,17 @@
+
+<mp-toptips msg="{{error}}" type="error" show="{{error}}"></mp-toptips>
+<view class="page">
+    <view class="page__bd">
+        <mp-form id="form" models="{{formData}}">
+            <mp-cells title="输入">
+                <mp-cell prop="submitTimeid" title="密码" ext-class="">
+                    <input class="weui-input" password type="text" bindinput="bindPasswdInput" placeholder="请输入密码" />
+                </mp-cell>  
+            </mp-cells>
+        </mp-form>
+        <view class="weui-btn-area">
+            <button class="weui-btn" type="primary" bindtap="decrypt" disabled="{{buttonDisable}}">解密</button>
+        </view>
+    </view>
+</view>
+

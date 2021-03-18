@@ -1,0 +1,22 @@
+{
+  "name": "wxstamp",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kaikai-byte/wxstamp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kaikai-byte/wxstamp/issues"
+  },
+  "homepage": "https://github.com/Kaikai-byte/wxstamp#readme",
+  "description": "",
+  "dependencies": {
+    "miniprogram-sm-crypto": "^0.2.4"
+  }
+}

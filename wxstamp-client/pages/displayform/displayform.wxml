@@ -1,0 +1,57 @@
+<mp-toptips msg="{{error}}" type="error" show="{{error}}"></mp-toptips>
+<view class="page">
+    <view class="page__bd">
+        <mp-form id="form" models="{{formData}}">
+            <mp-cells title="表单">
+                <mp-cell prop="submitTimeid" title="申请人" ext-class="">
+                    <input disabled="true" class="weui-input" placeholder="" value="{{form._openid}}"/>
+                </mp-cell>   
+                <mp-cell prop="date" title="日期" ext-class="">
+                    <picker data-field="date" mode="date" value="{{form.requestDate}}" start="2021-01-01" end="2029-12-31" disabled="true">
+                        <view class="weui-input">{{form.requestDate}}</view>
+                    </picker>
+                </mp-cell>
+                <mp-cell prop="sealID" title="印章" ext-class="">
+                    <picker mode="selector" value="{{form.sealIndex}}" range="{{sealArray}}" disabled="true">
+                        <view class="picker">
+                            {{sealArray[form.sealIndex]}}
+                        </view>
+                    </picker>
+                </mp-cell>
+                <mp-cell prop="submitTimeid" title="用章事件ID" ext-class="">
+                    <input disabled="true" class="weui-input" placeholder="" value="{{form.requestID}}"/>
+                </mp-cell>            
+                <mp-cell prop="submitTimeid" title="提交时间" ext-class="">
+                    <input disabled="true" class="weui-input" placeholder="" value="{{form.submitTime}}"/>
+                </mp-cell>         
+                <mp-cell prop="statusid" title="状态" ext-class="">
+                    <input disabled="true" class="weui-input" placeholder="" value="{{form.status}}"/>
+                </mp-cell>       
+                <mp-cell prop="submitTimeid" title="审核人" ext-class="">
+                    <input disabled="true" class="weui-input" placeholder="" value="{{form.verifyOpenID}}"/>
+                </mp-cell>   
+                <mp-cell prop="submitTimeid" title="审核时间" ext-class="">
+                    <input disabled="true" class="weui-input" placeholder="" value="{{form.verifyTime}}"/>
+                </mp-cell>   
+            </mp-cells>
+        </mp-form>
+
+        <view class="weui-cells__title">申请理由</view>
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell">
+                <view class="weui-cell__bd">
+                    <textarea disabled="true" class="weui-textarea" value="{{form.reasonOfRequest}}" placeholder="" style="height: 3.3em"/>
+                </view>
+            </view>
+        </view>
+
+        <view class="weui-cells__title">点击保存到相册</view>
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell" wx:for="{{form.imgData}}">
+                <image  bindtap="imagetap"  id="{{index}}"src="data:image/png;base64,{{item}}" mode="aspectFit"></image>
+            </view>
+
+        </view>
+    </view>
+</view>
+
