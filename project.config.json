@@ -34,10 +34,12 @@
     "userConfirmedUseCompilerModuleSwitch": false,
     "userConfirmedBundleSwitch": false,
     "packNpmManually": true,
-    "packNpmRelationList": [{
-      "packageJsonPath":"./package.json",
-      "miniprogramNpmDistDir":"./wxstamp-client"
-    }],
+    "packNpmRelationList": [
+      {
+        "packageJsonPath": "./package.json",
+        "miniprogramNpmDistDir": "./wxstamp-client"
+      }
+    ],
     "minifyWXSS": true
   },
   "appid": "wx0a32b0c1f3f09bd1",
