@@ -203,6 +203,11 @@ Page({
     }
     wx.setStorageSync('sealUseRequestFormDraft', sealUseRequestFormDraft);
     app.globalData.selectedRequestID = 0;
+    wx.showToast({
+      title:"操作成功",
+      icon:'success',
+      duration: 600
+    })
     console.log('删除之后'+sealUseRequestFormDraft);
     this.onShow();
   },

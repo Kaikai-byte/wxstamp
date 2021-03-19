@@ -15,7 +15,8 @@ Component({
     showProcessing:false,
     imgData:[],
     dataCloudPath:'',
-    buttonDisabled: false
+    buttonDisabled: false,
+    useStampNumber: null
   },
   methods: {
     onLoad: function () {
@@ -44,6 +45,7 @@ Component({
         let sm3 = sm.sm3
         let sm4 = sm.sm4
         var encryptForm = JSON.parse(JSON.stringify(this.data.form));
+        encryptForm.useStampNumber = this.data.useStampNumber;
         encryptForm.imgData = this.data.imgData;
         encryptForm.completeDate = completeTime;          
         
@@ -133,6 +135,13 @@ Component({
         passwd:e.detail.value
       })
     },
+
+    bindUseStampNumberInput:function(e){
+      this.setData({
+        useStampNumber:e.detail.value
+      })
+    },
+
     stringToHex: function(str){
       var val = "";
       for (var i = 0; i < str.length; i++) {

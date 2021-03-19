@@ -71,6 +71,7 @@ Component({
                 requestDate : this.data.date,  
                 sealIndex : this.data.sealIndex,
                 reasonOfRequest : this.data.reasonOfRequest,
+                status: "草稿"
               };
             };    
         }

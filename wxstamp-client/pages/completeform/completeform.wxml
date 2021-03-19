@@ -4,7 +4,7 @@
 <view class="page">
     <view class="page__bd">
         <mp-form id="form" models="{{formData}}">
-            <mp-cells title="表单">
+            <mp-cells title="授权表单">
                 <mp-cell prop="submitTimeid" title="申请人" ext-class="">
                     <input disabled="true" class="weui-input" placeholder="" value="{{form._openid}}"/>
                 </mp-cell>   
@@ -35,9 +35,6 @@
                 <mp-cell prop="submitTimeid" title="审核时间" ext-class="">
                     <input disabled="true" class="weui-input" placeholder="" value="{{form.verifyTime}}"/>
                 </mp-cell>   
-                <mp-cell prop="submitTimeid" title="密码" ext-class="">
-                    <input class="weui-input" password type="text" bindinput="bindPasswdInput" placeholder="请牢记" />
-                </mp-cell>  
             </mp-cells>
         </mp-form>
 
@@ -54,6 +51,18 @@
                 <mp-uploader  bindsuccess="uploadSuccess" select="{{selectFile}}" upload="{{uploadFile}}" files="{{images}}" max-count="5" title="图片上传" tips="图片上传提示"></mp-uploader>
             </mp-cell>
         </mp-cells>
+
+        <mp-form>
+            <mp-cells title="用印部分">
+                <mp-cell prop="submitTimeid" title="用章次数" ext-class="">
+                    <input class="weui-input" password type="text" bindinput="bindUseStampNumberInput" placeholder="" />
+                </mp-cell>  
+                <mp-cell prop="inputpasswdid" title="密码" ext-class="">
+                    <input class="weui-input" password type="text" bindinput="bindPasswdInput" placeholder="请牢记" />
+                </mp-cell>  
+            </mp-cells>
+        </mp-form>
+
         <view class="weui-btn-area">
             <button class="weui-btn" type="primary" bindtap="completeForm" disabled="{{buttonDisabled}}">完成</button>
         </view>
