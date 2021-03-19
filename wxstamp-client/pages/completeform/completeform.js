@@ -91,7 +91,7 @@ Component({
         // 成功回调
         success: res => {
           that.setData({dataCloudPath: res.fileID});
-          console.log('上传数据成功', res)
+          console.log('上传图片成功', res)
           setTimeout(function(info,data){
             if (data.dataCloudPath != ''){
               sealUseRequestFormCompleteDB.add({
@@ -176,20 +176,18 @@ Component({
     uploadFile(images) {
       var that = this;
       console.log('upload images', images)
-      for (var i = 0; i < images.tempFilePaths.length; i++) {
-        var image = {};
-        image.url = images.tempFilePaths[i];
-        image.loading = false;
-        image.error = false;
-        that.data.images.push(image);
-        that.urlTobase64(images.tempFilePaths[i])
-        console.log('[completeForm]:完成urlTobase64,第',i+1,'张，共',images.tempFilePaths.length,'张')
-      };
+      var image = {};
+      image.url = images.tempFilePaths[0];
+      image.loading = false;
+      image.error = false;
+      that.data.images.push(image);
       console.log('that.data.images:',that.data.images)
+      this.urlTobase64(images.tempFilePaths[0])
+      console.log('[completeForm]:完成urlTobase64')
       // 文件上传的函数，返回一个promise
       return new Promise((resolve, reject) => {
         setTimeout(() => {
-          resolve({urls:[that.data.images[that.data.images.length - 1].url]})
+          resolve({})
         }, 1)
       })
     },

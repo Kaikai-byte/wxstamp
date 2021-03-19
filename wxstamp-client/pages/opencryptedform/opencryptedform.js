@@ -29,19 +29,17 @@ Component({
         that.setData({
           form: data
         });
-        if (that.data.form.hasOwnProperty('cryptedDataPath')){
-          that.downloadCryptedData(that.data.form.cryptedDataPath)
-          wx.showLoading({
-            title:"正在下载"
-          })
-        }
-
+        that.downloadCryptedData(that.data.form.cryptedDataPath)
    //     console.log(that.data.form,"我被传过来了")
   //      console.log(JSON.stringify(that.data.form))
       })
       //   that.setData({crypted:true})
 
-
+      wx.showToast({
+        title:"开始下载",
+        icon:"success",
+        duration:600
+      })
     },
 
     bindPasswdInput: function(e){
@@ -50,9 +48,6 @@ Component({
     },
 
     decrypt: function(){
-      wx.showLoading({
-        title:"正在解密",
-      })
       console.log('开始解密')
       this.setData({buttonDisable:true})
       let sm3 = sm.sm3
@@ -63,23 +58,13 @@ Component({
       try{
         console.log('SM4解密开始')
         var decryptedForm = sm4.decrypt(this.data.cryptedData,passwdSM3)
-        var decryptedFormHash = sm3(decryptedForm)
-        console.log('SM4解密完成，开始校验')
-        wx.hideLoading({
-          success: (res) => {},
-        })
         //console.log(decryptedForm,'解密数据');
         //console.log(this.data.form.hash,'原哈希');
-        if (decryptedFormHash != this.data.form.hash){
+        if (sm3(decryptedForm)!= this.data.form.hash){
           that.setData({buttonDisable:false})
-          wx.showToast({
-            title:"密码错误",
-            icon:"error",
-            duration:600
-          })
           throw new Error ('密码错误')
         }
-        console.log('校验正确')
+        console.log('SM4解密结束')
         wx.showToast({
           title:"解密成功",
           icon:"success",
@@ -130,9 +115,6 @@ Component({
           if (res.data != ''){
             that.setData({cryptedData: res.data})
             console.log('读取完成')
-            wx.hideLoading({
-              success: (res) => {},
-            });
             wx.showToast({
               title:"下载完成",
               icon:"success",
@@ -141,9 +123,6 @@ Component({
             that.setData({buttonDisable:false})
           }
           else{
-            wx.hideLoading({
-              success: (res) => {},
-            });
             wx.showToast({
               title:"下载到空文件",
               icon:"error",
@@ -152,11 +131,8 @@ Component({
           }   
         },
         fail(res){
-          wx.hideLoading({
-            success: (res) => {},
-          });
           wx.showToast({
-            title:"出错啦",
+            title:"等下",
             icon:"error",
             duration:600
           })

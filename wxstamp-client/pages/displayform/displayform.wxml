@@ -44,14 +44,7 @@
                 </view>
             </view>
         </view>
-
-        <view class="weui-cells__title">点击保存到相册</view>
-        <view class="weui-cells weui-cells_after-title">
-            <view class="weui-cell" wx:for="{{form.imgData}}">
-                <image  bindtap="imagetap"  id="{{index}}"src="data:image/png;base64,{{item}}" mode="aspectFit"></image>
-            </view>
-
-        </view>
+        <image src="data:image/png;base64,{{form.imgData}}"></image>
     </view>
 </view>
 

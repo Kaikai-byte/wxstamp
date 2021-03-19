@@ -65,9 +65,6 @@ Page({
   onGetOpenid: function(e) {
     // 调用云函数
     this.onGetUserInfo(e);
-    wx.showLoading({
-      title: '正在登录',
-    })
     wx.cloud.callFunction({
       name: 'login',
       data: {},
@@ -79,9 +76,6 @@ Page({
           isAdmin:app.globalData.isAdmin,
           openid:app.globalData.openid
         })
-        wx.hideLoading({
-          success: (res) => {},
-        })
         wx.showToast({
           title:"欢迎回来，"+this.data.userInfo.nickName,
           icon:'success',
@@ -90,9 +84,6 @@ Page({
       },
       fail: err => {
         console.error('[云函数] [amIAdmin] 调用失败', err)
-        wx.hideLoading({
-          success: (res) => {},
-        })
         wx.showToast({
           title:"获取openid失败",
           icon:'error',
