@@ -44,11 +44,14 @@ Component({
         var completeTime = myDate.toLocaleString();
         let sm3 = sm.sm3
         let sm4 = sm.sm4
+        
         var encryptForm = JSON.parse(JSON.stringify(this.data.form));
+
         encryptForm.useStampNumber = this.data.useStampNumber;
         encryptForm.imgData = this.data.imgData;
-        encryptForm.completeDate = completeTime;          
-        
+        encryptForm.completeDate = completeTime;     
+
+        console.log('[completeForm]:开始stringToHex');
         var passwdSM3 = this.stringToHex(sm3(this.data.passwd).slice(0,16));
         console.log('[completeForm]:完成stringToHex')
 

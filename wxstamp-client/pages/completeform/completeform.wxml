@@ -55,7 +55,7 @@
         <mp-form>
             <mp-cells title="用印部分">
                 <mp-cell prop="submitTimeid" title="用章次数" ext-class="">
-                    <input class="weui-input" password type="text" bindinput="bindUseStampNumberInput" placeholder="" />
+                    <input class="weui-input" bindinput="bindUseStampNumberInput" placeholder="" />
                 </mp-cell>  
                 <mp-cell prop="inputpasswdid" title="密码" ext-class="">
                     <input class="weui-input" password type="text" bindinput="bindPasswdInput" placeholder="请牢记" />

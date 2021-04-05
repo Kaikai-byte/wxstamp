@@ -8,7 +8,7 @@ Page({
     logged: false,
     takeSession: false,
     requestResult: '',
-    isAdmin:false,
+    isAdmin:null,
     openid:null,
   },
 
@@ -73,10 +73,15 @@ Page({
       data: {},
       success: res => {
         console.log('[云函数] [login]:', res.result.isAdmin,res.result.openid)
+        if (res.result.isAdmin){
+          this.setData({isAdmin : '是'})
+        }
+        else{
+          this.setData({isAdmin : '否'})
+        }
         app.globalData.isAdmin = res.result.isAdmin;
         app.globalData.openid = res.result.openid;
         this.setData({
-          isAdmin:app.globalData.isAdmin,
           openid:app.globalData.openid
         })
         wx.hideLoading({

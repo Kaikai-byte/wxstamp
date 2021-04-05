@@ -32,7 +32,7 @@ Component({
         if (that.data.form.hasOwnProperty('cryptedDataPath')){
           that.downloadCryptedData(that.data.form.cryptedDataPath)
           wx.showLoading({
-            title:"正在下载"
+            title:"下载加密数据中..."
           })
         }
 
@@ -103,7 +103,7 @@ Component({
 
     downloadCryptedData: function(path){
       var that = this;
-      console.log('开始下载',path)
+      console.log('下载加密数据中...',path)
       wx.cloud.downloadFile({
         fileID: path, // 文件 ID
         success: res => {

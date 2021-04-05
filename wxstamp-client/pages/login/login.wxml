@@ -1,4 +1,4 @@
-<!--pages/me/me.wxml-->
+<!--pages/me/me.wxml--><!--
 <view class="container">
   <view class="avatar">
     <image src="{{avatarUrl}}" />
@@ -7,13 +7,35 @@
   <view class="weui-media-box__title">{{userInfo.nickName}}</view>
   <view class="weui-media-box__desc">openid:{{openid}}</view>
   <view class="weui-media-box__desc">管理员：{{isAdmin}}</view>
-<!--
-  <button bindtap="navigateSMCrypto" >测试SM算法</button>
-  <button bindtap="navigateCompleteForm" >测试线下用印Base64</button>
-  <button bindtap="navigateOpenCryptedForm" >测试解密</button>
-  -->
   <view class="btn-view">
-  <button open-type="getUserInfo"  bindgetuserinfo="onGetOpenid" class="userinfo-nickname" >点击登录</button>
+  <button open-type="getUserInfo"  bindgetuserinfo="onGetOpenid" class="userinfo-nickname" >点我登录</button>
   </view>
 
 </view>
+-->
+
+<mp-toptips msg="{{error}}" type="error" show="{{error}}"></mp-toptips>
+<view class="page">
+    <view class="page__bd">
+      <view class="avatar">
+        <image src="{{avatarUrl}}" />
+      </view>
+        <mp-form id="form" >
+            <mp-cells title="我" wx:if="{{logged}}">
+                <mp-cell prop="submitTimeid" title="OpenID" ext-class="" >
+                  <input disabled="true" class="weui-input"  bindinput="" placeholder="" value="{{openid}}" />
+                </mp-cell>  
+                <mp-cell prop="submitTimeid" title="昵称" ext-class="" >
+                  <input disabled="true" class="weui-input"  bindinput="" placeholder="" value="{{userInfo.nickName}}" />
+                </mp-cell>  
+                <mp-cell prop="submitTimeid" title="审核人员" ext-class="" >
+                  <input disabled="true" class="weui-input"  bindinput="" placeholder="" value="{{isAdmin}}" />
+                </mp-cell>  
+            </mp-cells>
+        </mp-form>
+      <view class="btn-view">
+        <button open-type="getUserInfo"  bindgetuserinfo="onGetOpenid" class="userinfo-nickname" >点我登录</button>
+      </view>
+    </view>
+</view>
+

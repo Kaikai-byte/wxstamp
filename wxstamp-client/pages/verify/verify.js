@@ -57,6 +57,9 @@ Page({
 
   viewForm: function(e) {
     var RequestID = app.globalData.selectedRequestID;
+    wx.showLoading({
+      title: '下载中...',
+    })
     wx.cloud.callFunction({
       name: 'findForm',
       data: {selectedRequestID:RequestID},
@@ -65,6 +68,9 @@ Page({
         {
           var formData = res.result.data[0];
         console.log(formData)
+        wx.hideLoading({
+          success: (res) => {},
+        })
         wx.navigateTo({
           url: '/pages/displayform/displayform',
         success: function(res){
@@ -73,6 +79,9 @@ Page({
       }
       },
       fail: err => {
+        wx.hideLoading({
+          success: (res) => {},
+        })
         console.error('[云函数] [findForm] 调用失败', err)
         wx.showToast({
           title:"获取表单失败",
@@ -88,11 +97,14 @@ Page({
     var myDate = new Date();
     var verifyTime = myDate.toLocaleString();
     var RequestID = app.globalData.selectedRequestID;
+    wx.showLoading({
+      title: '云端同步中...',
+    })
     wx.cloud.callFunction({
       name: 'allowForm',
       data: {
-      selectedRequestID:RequestID,
-      verifyTime:verifyTime
+        selectedRequestID:RequestID,
+        verifyTime:verifyTime
       },
       success: res => {
         if (!res.result.isEmpty)
@@ -101,6 +113,9 @@ Page({
         console.log(formData)      
         }
         console.log('[云函数] [allowForm] 调用成功', res)
+        wx.hideLoading({
+          success: (res) => {},
+        })
         wx.showToast({
           title:"数据库操作成功",
           icon:'success',
@@ -109,8 +124,11 @@ Page({
       },
       fail: err => {
         console.error('[云函数] [allowForm] 调用失败', err)
+        wx.hideLoading({
+          success: (res) => {},
+        })
         wx.showToast({
-          title:"[云函数] [allowForm] 调用失败",
+          title:"调用失败",
           icon:'error',
           duration: 600
         })
@@ -122,6 +140,9 @@ Page({
     var myDate = new Date();
     var verifyTime = myDate.toLocaleString();
     var RequestID = app.globalData.selectedRequestID;
+    wx.showLoading({
+      title: '云端同步中...',
+    })
     wx.cloud.callFunction({
       name: 'notAllowForm',
       data: {
@@ -129,10 +150,14 @@ Page({
         verifyTime:verifyTime
       },
       success: res => {
+        wx.hideLoading({
+          success: (res) => {},
+        })
         if (!res.result.isEmpty)
         {
           var formData = res.result.data[0];
-        console.log(formData)      
+          console.log(formData)    
+            
         }
         console.log('[云函数] [notAllowForm] 调用成功', res)
         wx.showToast({
@@ -143,8 +168,11 @@ Page({
       },
       fail: err => {
         console.error('[云函数] [notAllowForm] 调用失败', err)
+        wx.hideLoading({
+          success: (res) => {},
+        })
         wx.showToast({
-          title:"[云函数] [allowForm] 调用失败",
+          title:"调用失败",
           icon:'error',
           duration: 600
         })

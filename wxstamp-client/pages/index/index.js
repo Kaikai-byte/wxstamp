@@ -35,6 +35,12 @@ Page({
     ],
   },
 
+  onHide : function(e){
+    wx.hideLoading({
+      success: (res) => {},
+    })
+  },
+
   draftFormClick(e) {
     this.setData({
       showDraftActionsheet: true
@@ -112,6 +118,9 @@ Page({
   completeForm: function(e) {
     var RequestID = app.globalData.selectedRequestID;
     console.log("completeForm")
+    wx.showLoading({
+      title: '下载中...',
+    })
     wx.cloud.callFunction({
       name: 'findForm',
       data: {selectedRequestID:RequestID},
@@ -140,6 +149,9 @@ Page({
 
   decryptForm: function(e) {
     var RequestID = app.globalData.selectedRequestID;
+    wx.showLoading({
+      title: '下载中...',
+    })
     wx.cloud.callFunction({
       name: 'findForm',
       data: {selectedRequestID:RequestID},
@@ -169,6 +181,9 @@ Page({
 
   viewForm: function(e) {
     var RequestID = app.globalData.selectedRequestID;
+    wx.showLoading({
+      title: '下载中...',
+    })
     wx.cloud.callFunction({
       name: 'findForm',
       data: {selectedRequestID:RequestID},
@@ -177,6 +192,9 @@ Page({
         {
           var formData = res.result.data[0];
         console.log(formData)
+        wx.hideLoading({
+          success: (res) => {},
+        })
         wx.navigateTo({
           url: '/pages/displayform/displayform',
         success: function(res){
@@ -204,7 +222,7 @@ Page({
     wx.setStorageSync('sealUseRequestFormDraft', sealUseRequestFormDraft);
     app.globalData.selectedRequestID = 0;
     wx.showToast({
-      title:"操作成功",
+      title:"删除成功",
       icon:'success',
       duration: 600
     })
@@ -221,6 +239,10 @@ Page({
       for(var i in sealUseRequestFormDraft)
       {
         if (sealUseRequestFormDraft[i].requestID == requestID){
+          wx.showLoading({
+            title: '提交中...',
+          })
+
           sealUseRequestFormSubmittedToBeVerifiedDB.add({
             data:{
               submitTime: submitTime,
@@ -232,6 +254,9 @@ Page({
               status: "未审核"
             }
           }).then(res=>{
+            wx.hideLoading({
+              success: (res) => {},
+            })
             wx.showToast({
               title:"提交成功",
               icon:"success",

@@ -46,7 +46,7 @@
         </view>
 
         <mp-form>
-            <mp-cells title="用印部分">
+            <mp-cells title="用印部分" wx:if="{{form.completeDate.length>0}}">
                 <mp-cell prop="submitTimeid" title="用印时间" ext-class="" wx:if="{{form.completeDate.length>0}}">
                     <input disabled="true" class="weui-input"  bindinput="bindUseStampNumberInput" placeholder="" value="{{form.completeDate}}" />
                 </mp-cell>  
