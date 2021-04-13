@@ -1751,6 +1751,15 @@ function str2binary(str) {
 }
 
 /**
+ * 数组转为二进制
+ */
+function array2binary(arr) {
+  return arr.reduce(function (temp, item) {
+    return temp + leftPad(item.toString(2), 8);
+  }, '');
+}
+
+/**
  * 循环左移
  */
 function rol(str, n) {
@@ -1930,7 +1939,7 @@ function CF(V, Bi) {
 }
 
 module.exports = function (str) {
-  var binary = str2binary(str);
+  var binary = typeof str === 'string' ? str2binary(str) : array2binary(str);
 
   // 填充
   var len = binary.length;

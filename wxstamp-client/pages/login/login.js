@@ -1,4 +1,6 @@
 var app = getApp();
+const sm = require('../../miniprogram_npm/miniprogram-sm-crypto/index');
+const sm2 = require('../../miniprogram_npm/miniprogram-sm-crypto/index').sm2
 
 Page({
 
@@ -68,11 +70,23 @@ Page({
     wx.showLoading({
       title: '正在登录',
     })
+    var publicKey;
+    var privateKey;
+    
+    let keypair = sm2.generateKeyPairHex()
+
+    publicKey = keypair.publicKey
+    privateKey = keypair.privateKey
+    console.log(publicKey)
+    console.log(privateKey)
+    app.globalData.pubKey = publicKey,
+    app.globalData.privKey = privateKey,
+    
     wx.cloud.callFunction({
       name: 'login',
-      data: {},
+      data: {'publicKey':publicKey},
       success: res => {
-        console.log('[云函数] [login]:', res.result.isAdmin,res.result.openid)
+        console.log('[云函数] [login]:', res.result.isAdmin, res.result.openid)
         if (res.result.isAdmin){
           this.setData({isAdmin : '是'})
         }

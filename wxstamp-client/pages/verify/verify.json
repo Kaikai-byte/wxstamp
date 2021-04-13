@@ -3,6 +3,6 @@
     "item": "/components/Item/Item",
     "mp-actionSheet": "weui-miniprogram/actionsheet/actionsheet"
   },
-  "navigationBarTitleText": "Verify",
+  "navigationBarTitleText": "审批",
   "enablePullDownRefresh": true
 }

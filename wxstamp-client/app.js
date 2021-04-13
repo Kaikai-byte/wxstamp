@@ -16,6 +16,8 @@ App({
     avatarUrl:null,
     userInfo:null,
     isAdmin:false,
-    logged:false
+    logged:false,
+    pubKey:null,
+    privKey:null
   }
 })

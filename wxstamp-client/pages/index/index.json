@@ -3,7 +3,7 @@
     "item": "/components/Item/Item",
     "mp-actionSheet": "weui-miniprogram/actionsheet/actionsheet"
   },
-  "navigationBarTitleText": "Home",
+  "navigationBarTitleText": "主页",
   "enablePullDownRefresh": true
 
 }

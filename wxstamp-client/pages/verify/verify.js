@@ -5,6 +5,8 @@ const sealUseRequestFormSubmittedToBeVerifiedDB = db.collection('sealUseRequestF
 const sealUseRequestFormSubmittedAllowedDB = db.collection('sealUseRequestFormSubmittedAllowed');
 const sealUseRequestFormSubmittedNotAllowedDB = db.collection('sealUseRequestFormSubmittedNotAllowed');
 
+const sm = require('../../miniprogram_npm/miniprogram-sm-crypto/index');
+const sm2 = require('../../miniprogram_npm/miniprogram-sm-crypto/index').sm2
 
 Page({
   data: {
@@ -97,14 +99,21 @@ Page({
     var myDate = new Date();
     var verifyTime = myDate.toLocaleString();
     var RequestID = app.globalData.selectedRequestID;
+    var parameterStringfy = JSON.stringify({selectedRequestID:RequestID, verifyTime:verifyTime})
+    var sigValueHex = sm2.doSignature(parameterStringfy, app.globalData.privKey, {
+      hash: true,
+    });
+    console.log(sigValueHex)
+
     wx.showLoading({
       title: '云端同步中...',
     })
     wx.cloud.callFunction({
-      name: 'allowForm',
-      data: {
-        selectedRequestID:RequestID,
-        verifyTime:verifyTime
+      name: 'moveForm',
+      data: {      
+        parameterStringfy: parameterStringfy,
+        signature: sigValueHex,
+        permit: true
       },
       success: res => {
         if (!res.result.isEmpty)
@@ -112,7 +121,7 @@ Page({
           var formData = res.result.data[0];
         console.log(formData)      
         }
-        console.log('[云函数] [allowForm] 调用成功', res)
+        console.log('[云函数] [moveForm] 调用成功', res)
         wx.hideLoading({
           success: (res) => {},
         })
@@ -123,7 +132,7 @@ Page({
         })
       },
       fail: err => {
-        console.error('[云函数] [allowForm] 调用失败', err)
+        console.error('[云函数] [moveForm] 调用失败', err)
         wx.hideLoading({
           success: (res) => {},
         })
@@ -140,26 +149,32 @@ Page({
     var myDate = new Date();
     var verifyTime = myDate.toLocaleString();
     var RequestID = app.globalData.selectedRequestID;
+    var parameterStringfy = JSON.stringify({selectedRequestID:RequestID, verifyTime:verifyTime})
+    var sigValueHex = sm2.doSignature(parameterStringfy, app.globalData.privKey, {
+      hash: true,
+    });
+    console.log(sigValueHex)
+
     wx.showLoading({
       title: '云端同步中...',
     })
     wx.cloud.callFunction({
-      name: 'notAllowForm',
-      data: {
-        selectedRequestID:RequestID,
-        verifyTime:verifyTime
+      name: 'moveForm',
+      data: {      
+        parameterStringfy: parameterStringfy,
+        signature: sigValueHex,
+        permit: false
       },
       success: res => {
-        wx.hideLoading({
-          success: (res) => {},
-        })
         if (!res.result.isEmpty)
         {
           var formData = res.result.data[0];
-          console.log(formData)    
-            
+        console.log(formData)      
         }
-        console.log('[云函数] [notAllowForm] 调用成功', res)
+        console.log('[云函数] [moveForm] 调用成功', res)
+        wx.hideLoading({
+          success: (res) => {},
+        })
         wx.showToast({
           title:"数据库操作成功",
           icon:'success',
@@ -167,7 +182,7 @@ Page({
         })
       },
       fail: err => {
-        console.error('[云函数] [notAllowForm] 调用失败', err)
+        console.error('[云函数] [moveForm] 调用失败', err)
         wx.hideLoading({
           success: (res) => {},
         })

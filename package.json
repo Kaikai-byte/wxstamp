@@ -17,6 +17,6 @@
   "homepage": "https://github.com/Kaikai-byte/wxstamp#readme",
   "description": "",
   "dependencies": {
-    "miniprogram-sm-crypto": "^0.2.4"
+    "miniprogram-sm-crypto": "^0.2.5"
   }
 }

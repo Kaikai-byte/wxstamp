@@ -42,6 +42,7 @@ Component({
         this.setData({showProcessing:true});
         var myDate = new Date();
         var completeTime = myDate.toLocaleString();
+        let sm2 = sm.sm2
         let sm3 = sm.sm3
         let sm4 = sm.sm4
         
@@ -58,6 +59,9 @@ Component({
         
         var hash = sm3(JSON.stringify(encryptForm));
         console.log('[completeForm]:完成hash')
+
+        var signature = sm2.doSignature(JSON.stringify(this.data.form.requestID), app.globalData.privKey)
+        console.log('[completeForm]:完成signature')
        
         var encryptedForm = sm4.encrypt(JSON.stringify(encryptForm),passwdSM3)
 
@@ -71,7 +75,8 @@ Component({
             sealindex:this.data.form.sealIndex,
             requestid:this.data.form.requestID,
             date:this.data.form.requestDate,
-            hash:hash
+            hash:hash,
+            signature:signature
           }
         );
         this.setData({showProcessing:false})
@@ -106,6 +111,7 @@ Component({
                   requestID: info.requestid,
                   hash:info.hash,
                   cryptedDataPath: data.dataCloudPath,
+                  signature:info.signature,
                   status: "完成"
                 }
               }).then(res=>{
