@@ -29,13 +29,13 @@
       },
       {
         "pagePath": "pages/verify/verify",
-        "text": "审核",
+        "text": "审批",
         "iconPath": "assets/history.png",
         "selectedIconPath": "assets/history-active.png"
       },
       {
         "pagePath": "pages/login/login",
-        "text": "我",
+        "text": "我的",
         "iconPath": "assets/me.png",
         "selectedIconPath": "assets/me-active.png"
       }

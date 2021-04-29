@@ -20,7 +20,7 @@
                         </view>
                     </picker>
                 </mp-cell>
-                <mp-cell prop="submitTimeid" title="用章事件ID" ext-class="">
+                <mp-cell prop="submitTimeid" title="用印事件ID" ext-class="">
                     <input disabled="true" class="weui-input" placeholder="" value="{{form.requestID}}"/>
                 </mp-cell>            
                 <mp-cell prop="submitTimeid" title="提交时间" ext-class="">
@@ -29,10 +29,10 @@
                 <mp-cell prop="statusid" title="状态" ext-class="">
                     <input disabled="true" class="weui-input" placeholder="" value="{{form.status}}"/>
                 </mp-cell>       
-                <mp-cell prop="submitTimeid" title="审核人" ext-class="">
+                <mp-cell prop="submitTimeid" title="审批人" ext-class="">
                     <input disabled="true" class="weui-input" placeholder="" value="{{form.verifyOpenID}}"/>
                 </mp-cell>   
-                <mp-cell prop="submitTimeid" title="审核时间" ext-class="">
+                <mp-cell prop="submitTimeid" title="审批时间" ext-class="">
                     <input disabled="true" class="weui-input" placeholder="" value="{{form.verifyTime}}"/>
                 </mp-cell>   
             </mp-cells>
@@ -54,7 +54,7 @@
 
         <mp-form>
             <mp-cells title="用印部分">
-                <mp-cell prop="submitTimeid" title="用章次数" ext-class="">
+                <mp-cell prop="submitTimeid" title="用印次数" ext-class="">
                     <input class="weui-input" bindinput="bindUseStampNumberInput" placeholder="" />
                 </mp-cell>  
                 <mp-cell prop="inputpasswdid" title="密码" ext-class="">

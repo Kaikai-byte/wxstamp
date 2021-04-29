@@ -63,6 +63,7 @@ Component({
       try{
         console.log('SM4解密开始')
         var decryptedForm = sm4.decrypt(this.data.cryptedData,passwdSM3)
+        console.log('decryptedForm:',decryptedForm)
         var decryptedFormHash = sm3(decryptedForm)
         console.log('SM4解密完成，开始校验')
         wx.hideLoading({

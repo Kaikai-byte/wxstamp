@@ -25,10 +25,10 @@
                 <mp-cell prop="submitTimeid" title="OpenID" ext-class="" >
                   <input disabled="true" class="weui-input"  bindinput="" placeholder="" value="{{openid}}" />
                 </mp-cell>  
-                <mp-cell prop="submitTimeid" title="昵称" ext-class="" >
+            <!--    <mp-cell prop="submitTimeid" title="昵称" ext-class="" >
                   <input disabled="true" class="weui-input"  bindinput="" placeholder="" value="{{userInfo.nickName}}" />
-                </mp-cell>  
-                <mp-cell prop="submitTimeid" title="审核人员" ext-class="" >
+                </mp-cell>  -->
+                <mp-cell prop="submitTimeid" title="审批人员" ext-class="" >
                   <input disabled="true" class="weui-input"  bindinput="" placeholder="" value="{{isAdmin}}" />
                 </mp-cell>  
             </mp-cells>

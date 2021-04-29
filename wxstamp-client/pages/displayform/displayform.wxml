@@ -18,7 +18,7 @@
                         </view>
                     </picker>
                 </mp-cell>
-                <mp-cell prop="submitTimeid" title="用章事件ID" ext-class="">
+                <mp-cell prop="submitTimeid" title="用印事件ID" ext-class="">
                     <input disabled="true" class="weui-input" placeholder="" value="{{form.requestID}}"/>
                 </mp-cell>            
                 <mp-cell prop="submitTimeid" title="提交时间" ext-class="" wx:if="{{form.submitTime.length>0}}">
@@ -27,10 +27,10 @@
                 <mp-cell prop="statusid" title="状态" ext-class="" wx:if="{{form.status.length>0}}">
                     <input disabled="true" class="weui-input" placeholder="" value="{{form.status}}"/>
                 </mp-cell>       
-                <mp-cell prop="submitTimeid" title="审核人" ext-class="" wx:if="{{form.verifyOpenID.length>0}}">
+                <mp-cell prop="submitTimeid" title="审批人" ext-class="" wx:if="{{form.verifyOpenID.length>0}}">
                     <input disabled="true" class="weui-input" placeholder="" value="{{form.verifyOpenID}}"/>
                 </mp-cell>   
-                <mp-cell prop="submitTimeid" title="审核时间" ext-class="" wx:if="{{form.verifyTime.length>0}}">
+                <mp-cell prop="submitTimeid" title="审批时间" ext-class="" wx:if="{{form.verifyTime.length>0}}">
                     <input disabled="true" class="weui-input" placeholder="" value="{{form.verifyTime}}"/>
                 </mp-cell>   
             </mp-cells>
@@ -50,7 +50,7 @@
                 <mp-cell prop="submitTimeid" title="用印时间" ext-class="" wx:if="{{form.completeDate.length>0}}">
                     <input disabled="true" class="weui-input"  bindinput="bindUseStampNumberInput" placeholder="" value="{{form.completeDate}}" />
                 </mp-cell>  
-                <mp-cell prop="submitTimeid" title="用章次数" ext-class="" wx:if="{{form.useStampNumber.length>0}}">
+                <mp-cell prop="submitTimeid" title="用印次数" ext-class="" wx:if="{{form.useStampNumber.length>0}}">
                     <input disabled="true" class="weui-input"  bindinput="bindUseStampNumberInput" placeholder="" value="{{form.useStampNumber}}" />
                 </mp-cell>  
 

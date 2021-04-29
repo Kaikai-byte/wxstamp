@@ -27,7 +27,7 @@ Page({
     showAllowedActionsheet: false,
     allowedGroups: [
       { text: '查看', value: 1 },
-      { text: '现在用章', value: 2}
+      { text: '线下用印', value: 2}
     ],
     showCompleteActionsheet: false,
     completeGroups: [

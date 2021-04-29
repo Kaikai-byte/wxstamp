@@ -18,7 +18,7 @@
             </mp-cells>
         </mp-form>
 
-        <view class="weui-cells__title">申请理由</view>
+        <view class="weui-cells__title">用印理由</view>
         <view class="weui-cells weui-cells_after-title">
             <view class="weui-cell">
                 <view class="weui-cell__bd">

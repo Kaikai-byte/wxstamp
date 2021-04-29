@@ -102,7 +102,7 @@ Page({
           success: (res) => {},
         })
         wx.showToast({
-          title:"欢迎回来，"+this.data.userInfo.nickName,
+          title:"欢迎回来",
           icon:'success',
           duration: 600
         })
