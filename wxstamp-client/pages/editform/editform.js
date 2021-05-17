@@ -87,7 +87,11 @@ Component({
         else{
             this.saveEditedForm(this.data.sealUseRequestFormDraftToBeEdited.requestID)
         }
-       
+        setTimeout(function () {
+          wx.navigateBack({
+            url: '/pages/index/index' 
+          })
+        }, 1000)
       },
 
       bindDateChange: function (e) {

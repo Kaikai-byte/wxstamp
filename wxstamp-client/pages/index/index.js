@@ -53,6 +53,7 @@ Page({
     this.setData({
       showDraftActionsheet: false
     });
+    this.updateForm();
   },
 
   submittedFormClick(e) {
@@ -68,6 +69,7 @@ Page({
     this.setData({
       showSubmittedActionsheet: false
     });
+    this.updateForm();
   },
 
   allowedFormClick(e) {
@@ -82,7 +84,8 @@ Page({
   allowedChangeOPClose(e) {
     this.setData({
       showAllowedActionsheet: false
-  });
+    });
+    this.updateForm();
   },
 
 
@@ -99,6 +102,7 @@ Page({
     this.setData({
       showCompleteActionsheet: false
     });
+    this.updateForm();
   },
   
 
@@ -214,6 +218,7 @@ Page({
   },
 
   deleteForm:function(requestID){
+    let that = this;
     var sealUseRequestFormDraft = wx.getStorageSync('sealUseRequestFormDraft');
     console.log('删除之前'+sealUseRequestFormDraft);
     for(var i in sealUseRequestFormDraft){
@@ -227,10 +232,13 @@ Page({
       duration: 600
     })
     console.log('删除之后'+sealUseRequestFormDraft);
-    this.onShow();
+    setTimeout(function () {
+      that.updateForm();
+    }, 1000)
   },
 
   submitForm:function(requestID){
+    let that = this;
     if (app.globalData.logged)
     {
       var sealUseRequestFormDraft = wx.getStorageSync('sealUseRequestFormDraft');
@@ -277,6 +285,9 @@ Page({
       })
     }
     app.globalData.selectedRequestID = 0;
+    setTimeout(function () {
+      that.updateForm();
+    }, 1000)
   },
 
   draftChangeOPMenu:function(e){
@@ -347,11 +358,6 @@ Page({
       sealUseRequestFormCompleteDB.where({_openid:app.globalData.openid}).get().then(res=>{
         this.setData({sealUseRequestFormComplete: res.data})
       })
-      wx.showToast({
-        title:"已更新列表",
-        icon:"success",
-        duration: 600
-      })
     }
     else
     {
@@ -370,12 +376,17 @@ Page({
   
   onPullDownRefresh: function(){
     this.updateForm();
+    wx.showToast({
+      title:"已更新列表",
+      icon:"success",
+      duration: 600
+    })
     wx.stopPullDownRefresh({
       success: (res) => {},
     })
   },
   
   onShow: function(){
-  //  this.updateForm();
+    this.updateForm();
   },
 })

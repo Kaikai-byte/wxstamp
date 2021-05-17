@@ -6,7 +6,7 @@ const sealUseRequestFormSubmittedAllowedDB = db.collection('sealUseRequestFormSu
 const sealUseRequestFormSubmittedNotAllowedDB = db.collection('sealUseRequestFormSubmittedNotAllowed');
 
 const sm = require('../../miniprogram_npm/miniprogram-sm-crypto/index');
-const sm2 = require('../../miniprogram_npm/miniprogram-sm-crypto/index').sm2
+const sm2 = sm.sm2
 
 Page({
   data: {
@@ -153,6 +153,7 @@ Page({
     var sigValueHex = sm2.doSignature(parameterStringfy, app.globalData.privKey, {
       hash: true,
     });
+    let that = this;
     console.log(sigValueHex)
 
     wx.showLoading({
@@ -180,6 +181,7 @@ Page({
           icon:'success',
           duration: 600
         })
+        that.updateForm();
       },
       fail: err => {
         console.error('[云函数] [moveForm] 调用失败', err)
@@ -233,23 +235,20 @@ Page({
     sealUseRequestFormSubmittedNotAllowedDB.get().then(res=>{
       this.setData({sealUseRequestFormSubmittedNotAllowed: res.data})
     })
-    wx.showToast({
-      title:"已更新列表",
-      icon:"success",
-      duration: 600
-    })
   },
 
   onLoad: function(){
     this.setData({sealArray:app.globalData.sealArray});
+    this.updateForm();
   },
   
   onPullDownRefresh: function(){
-    this.onShow();
+    this.updateForm();
     wx.stopPullDownRefresh({
       success: (res) => {},
     })
   },
+
   
   onShow: function(){
     this.setData({canIUse:app.globalData.isAdmin});

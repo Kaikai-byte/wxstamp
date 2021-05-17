@@ -25,16 +25,23 @@
                 <mp-cell prop="submitTimeid" title="OpenID" ext-class="" >
                   <input disabled="true" class="weui-input"  bindinput="" placeholder="" value="{{openid}}" />
                 </mp-cell>  
-            <!--    <mp-cell prop="submitTimeid" title="昵称" ext-class="" >
-                  <input disabled="true" class="weui-input"  bindinput="" placeholder="" value="{{userInfo.nickName}}" />
-                </mp-cell>  -->
+                
+                <mp-cell prop="submitTimeid" title="SM2公钥" ext-class="" >
+                  <input disabled="true" class="weui-input"  bindinput="" placeholder="" value="{{pubKey}}" />
+                </mp-cell>  
                 <mp-cell prop="submitTimeid" title="审批人员" ext-class="" >
                   <input disabled="true" class="weui-input"  bindinput="" placeholder="" value="{{isAdmin}}" />
+                </mp-cell>  
+                <mp-cell prop="submitTimeid" title="已上传公钥" ext-class="" >
+                  <input disabled="true" class="weui-input"  bindinput="" placeholder="" value="{{uploadPubKey}}" />
                 </mp-cell>  
             </mp-cells>
         </mp-form>
       <view class="btn-view">
-        <button open-type="getUserInfo"  bindgetuserinfo="onGetOpenid" class="userinfo-nickname" >点我登录</button>
+        
+        <button type="default" class="btn" open-type="getUserInfo"  bindgetuserinfo="onGetOpenid" class="userinfo-nickname" wx:if="{{!logged}}" >点我登录</button>
+
+        <button type="default" class="btn" bindtap="onLogOut" class="userinfo-nickname" wx:if="{{logged}}" >点我退出登录</button>
       </view>
     </view>
 </view>

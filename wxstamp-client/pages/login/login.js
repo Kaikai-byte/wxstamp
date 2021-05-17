@@ -1,6 +1,6 @@
 var app = getApp();
 const sm = require('../../miniprogram_npm/miniprogram-sm-crypto/index');
-const sm2 = require('../../miniprogram_npm/miniprogram-sm-crypto/index').sm2
+const sm2 = sm.sm2
 
 Page({
 
@@ -12,9 +12,13 @@ Page({
     requestResult: '',
     isAdmin:null,
     openid:null,
+    pubKey:null,
+    uploadPubKey:false
   },
 
   onLaunch: function () {
+
+
     if (!wx.cloud) {
       console.error('请使用 2.2.3 或以上的基础库以使用云能力')
     } else {
@@ -39,31 +43,34 @@ Page({
       }
     })
   },
-
-  navigateSMCrypto: function() {
-    wx.navigateTo({ url: '/pages/smcrypto/smcrypto' })
-  },
-
-  navigateCompleteForm: function() {
-    wx.navigateTo({ url: '/pages/completeform/completeform' })
-  },
-
-  navigateOpenCryptedForm: function() {
-    wx.navigateTo({ url: '/pages/opencryptedform/opencryptedform' })
-  },
-
-
   onGetUserInfo: function(e) {
-    if (!this.data.logged && e.detail.userInfo) {
+    if (!app.globalData.logged && e.detail.userInfo) {
       this.setData({
-        logged: true,
         avatarUrl: e.detail.userInfo.avatarUrl,
         userInfo: e.detail.userInfo
       })
-      app.globalData.logged = true;
+    }
+
+  },
+  onLogOut: function(e){
+    if (app.globalData.logged){
+      this.setData({
+        logged:false
+      })
+      app.globalData.logged = false;
+      app.globalData.openid = null;
+      app.globalData.avatarUrl = null;
+      app.globalData.userInfo = null;
+      app.globalData.isAdmin = false;
+      app.globalData.pubKey = null;
+      app.globalData.privKey = null;
+      wx.showToast({
+        title:"退出登录",
+        icon:'success',
+        duration: 600
+      })
     }
   },
-
   onGetOpenid: function(e) {
     // 调用云函数
     this.onGetUserInfo(e);
@@ -79,6 +86,9 @@ Page({
     privateKey = keypair.privateKey
     console.log(publicKey)
     console.log(privateKey)
+    this.setData({
+      pubKey:publicKey,
+    })
     app.globalData.pubKey = publicKey,
     app.globalData.privKey = privateKey,
     
@@ -101,6 +111,11 @@ Page({
         wx.hideLoading({
           success: (res) => {},
         })
+        this.setData({
+          logged:true,
+          uploadPubKey:'是'
+        })
+        app.globalData.logged = true;
         wx.showToast({
           title:"欢迎回来",
           icon:'success',
@@ -112,6 +127,11 @@ Page({
         wx.hideLoading({
           success: (res) => {},
         })
+        this.setData({
+          logged:false,
+          uploadPubKey:'否'
+        })
+        app.globalData.logged = false;
         wx.showToast({
           title:"获取openid失败",
           icon:'error',
